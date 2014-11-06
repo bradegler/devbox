@@ -1,8 +1,4 @@
----
-- hosts: devboxes
-  remote_user: root
-  tasks:
-    - name: clone dotfiles
-      git: repo=https://github.com/bradegler/dotfiles.git dest=/home/vagrant/.dotfiles recursive=true
-    - name: link dotfiles
-      command: /home/vagrant/.dotfiles/setup.sh
+- hosts: vagrant
+	sudo: true
+	roles:
+		- common

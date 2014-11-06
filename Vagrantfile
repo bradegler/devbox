@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network :private_network, ip: "192.168.33.13"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -35,7 +36,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "provisioning/playbook.yml"
+    ansible.playbook        = "provisioning/playbook.yml"
+    ansible.inventory_path  = "provisioning/ansible_hosts"
   end
 
 end
