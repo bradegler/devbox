@@ -39,4 +39,7 @@ class docker-images {
     docker::image { 'bradegler/redis': }
     docker::image { 'bradegler/nginx': }
 
+    exec {"vagrant docker membership":
+        command => "/usr/sbin/usermod -aG docker vagrant",
+    }
 }
