@@ -27,18 +27,23 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--memory", "1024"]
   end
 
-  config.vm.provision "docker" do |d|
-    # d.pull_images "bradegler/go"
-    # d.pull_images "bradegler/node"
-    # d.pull_images "bradegler/redis"
-    # d.pull_images "bradegler/java7"
-    # d.pull_images "bradegler/java8"
-  end
-
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path = "manifests"
-    puppet.module_path = "modules"
-    puppet.manifest_file = "default.pp"
+    puppet.options = ['--verbose']
+  end
+
+  config.vm.provision "docker" do |d|
+    d.pull_images "bradegler/go"
+    d.pull_images "bradegler/node"
+    d.pull_images "bradegler/redis"
+    d.pull_images "bradegler/java7"
+    d.pull_images "bradegler/java8"
+    d.pull_images "bradegler/nginx"
+    d.pull_images "bradegler/scala"
+    d.pull_images "bradegler/rabbitmq"
+
+    d.run "bradegler/redis", args: "-P --name dev-redis"
+
   end
 
 end
