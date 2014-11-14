@@ -35,9 +35,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # d.pull_images "bradegler/java8"
   end
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook        = "provisioning/playbook.yml"
-    ansible.inventory_path  = "provisioning/ansible_hosts"
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "manifests"
+    puppet.module_path = "modules"
+    puppet.manifest_file = "default.pp"
   end
 
 end
