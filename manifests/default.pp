@@ -3,7 +3,7 @@ Exec {
 }
 
 # Install some default packages
-$default_packages = [ 'build-essential', 'curl', 'git', 'subversion', 'ant', 'software-properties-common', 'python-software-properties',]
+$default_packages = [ 'build-essential', 'curl', 'git', 'subversion', 'software-properties-common', 'python-software-properties',]
 package { $default_packages :
     ensure => present,
 }
