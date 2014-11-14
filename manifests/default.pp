@@ -1,5 +1,6 @@
-node 'ubuntu/trusty64' {
+node 'devbox' {
 
+    include os-prep, docker-images
     Class['os-prep'] -> Class['docker-images']
 }
 
@@ -11,6 +12,10 @@ class os-prep {
         ensure => present,
     }
 
+    file { "/opt/repos":
+        ensure => "directory",
+    }
+
     class{git:
         svn => true,
         gui => true,
@@ -20,7 +25,6 @@ class os-prep {
         path   => '/opt/repos/dotfiles',
         source => 'https://github.com/bradegler/dotfiles.git'
     }
-
 }
 
 class docker-images {
