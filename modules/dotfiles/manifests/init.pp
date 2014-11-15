@@ -6,14 +6,14 @@ class dotfiles {
       source   => "https://github.com/bradegler/dotfiles.git",
     }
 
-    file { "/home/vagrant/.dotfiles":
-        ensure => 'link',
-        target => '/opt/repos/dotfiles',
-        require => Vcsrepo[ "/opt/repos/dotfiles"],
-    }
+    # file { "/home/vagrant/.dotfiles":
+    #     ensure => 'link',
+    #     target => '/opt/repos/dotfiles',
+    #     require => Vcsrepo[ "/opt/repos/dotfiles"],
+    # }
 
-    exec { "link dotfiles":
-        command => "/opt/repos/dotfiles/setup.sh",
-        require => File["/home/vagrant/.dotfiles"],
-    }
+    # exec { "link dotfiles":
+    #     command => "/opt/repos/dotfiles/setup.sh",
+    #     require => File["/home/vagrant/.dotfiles"],
+    # }
 }
